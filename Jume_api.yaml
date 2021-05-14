@@ -1,0 +1,1127 @@
+openapi: 3.0.0
+info:
+  description: ""
+  version: 1.0.0
+  title: Jume
+servers:
+  - url: http://103.159.51.35/api/v1
+tags:
+  - name: Santino
+    description: Shop thời trang 
+paths:
+  /register:
+    post:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - users
+      summary: dang ky 
+      description: api dang ky
+      operationId: insertUserById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userUpdate"
+        description: api dang ky thong tin
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        jwtToken:
+                          type: string
+                          description: token.
+  /login:
+    post:
+      tags:
+        - users
+      summary: api đăng nhập
+      description: api đăng nhập 
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userLogin"
+        description: thông tin đăng nhập 
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        jwtToken:
+                          type: string
+                          description: token.
+  /forgotPass:
+    put:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - users
+      summary: Quên mật khẩu
+      description: Quên mật khẩu và thay đổi mật khẩu
+      operationId: forgotpass
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userUpdate"
+        description: Thông tin thay đổi
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        jwtToken:
+                          type: string
+                          description: token.
+  /me:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - users
+      summary: Thong tin user
+      description: thong tin user
+      operationId: getUsers
+      parameters:
+        - in: query
+          name: lat
+          description: Latitude
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: lng
+          description: lngtitude
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/userInfo"
+    put:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - users
+      summary: Thay đổi thông tin user 
+      description: thay đổi thông tin user 
+      operationId: updateUsers
+      parameters:
+        - in: query
+          name: first_name
+          description: first name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: last_name
+          description: last name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: birthday
+          description: ngay sinh
+          required: false
+          schema:
+            type: string
+            format: date-time 
+        - in: query
+          name: gender
+          description: giới tính (0:la female, 1:lamale)
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: avatar
+          description: ảnh đại diện 
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: email 
+          description: địa chỉ email 
+          required: false
+          schema:
+            type: string
+            format: email 
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: object
+  /collect:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Collect
+      summary: Thông tin bộ sư tập 
+      description: Thông tin bộ sư tập
+      operationId: getCollets
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/collectsInfo"
+  /historybuy:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - History
+      summary: Danh sách đơn hàng
+      description: Thông tin danh sách đơn hàng
+      operationId: getlistSell
+      parameters:
+      - in: query
+        name: type (received,pending,ordered,final)
+        description: Trạng thái đơn hàng 
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: business_id
+        description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        description: Số lượng data trong 1 page
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        description: vị trí page muốn lấy
+        required: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listSell"
+  /listfavourite:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - History
+      summary: Danh sách yêu thích
+      description: Thông tin danh sách yêu thích
+      operationId: getlistFavourite
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/infoProducts"
+  /favourite:
+    put:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - favourite
+      summary: update trang thái sản phẩm yêu thích
+      description: update trạng thái sản phẩm yêu thích
+      operationId: updateFavourite
+      parameters:
+        - in: query
+          name: type(0:not 1:yest)
+          description: trạng thái yêu thích
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: id
+          description: id sản phẩm
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /listProduct:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Product
+      summary: Danh sách sản phẩm 
+      description: Danh sách sản phẩm bán chạy sản phẩm sale
+      operationId: getlistProduct
+      parameters:
+      - in: query
+        name: business_id
+        description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+        required: true
+        schema:
+          type: integer
+      - in: query
+        name: id_category
+        description: danh mục sản phẩm                                                                                                         
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        description: Số lượng data trong 1 page
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        description: vị trí page muốn lấy
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: type (received,pending,ordered,final)
+        description: truyền lên relate, sale, newest, oldest, low_price, high_price
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/infoProducts"
+  /productdetail:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Product
+      summary: Danh sách chi tiết sản phẩm 
+      description: Hiển thị đầy đủ thông tin chi tết của 1 sản phẩm
+      operationId: productdetail
+      parameters:
+      - in: query
+        name: id 
+        description: id sản phẩm
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: id_category
+        description: danh mục sản phẩm
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: business_id 
+        description: id của hàng
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/detailProuct"
+  /search:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Product
+      summary: Tìm kiếm sản phẩm
+      description: Có thể tìm kiếm sản phẩm theo theo mã quần áo,
+      operationId: getlistSearch
+      parameters:
+      - in: query
+        name: business_id
+        description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        description: Số lượng data trong 1 page
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        description: vị trí page muốn lấy
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: type (received,pending,ordered,final)
+        description: truyền lên relate, sale, newest, oldest, low_price, high_price gia tương đương với các tab bên dưới
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: keyword (received,pending,ordered,final)
+        description: keyword thì có thể là tên chính xác áo hoặc là mã áo, quần. format type url param encode
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/infoProducts"
+  /infoShop:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Shop
+      summary: Thông tin cửa hàng
+      description: Lây thông tin của hàng và danh sách kho hàng, banre quản cáo dứa trên sản phẩm sale và sản phẩm ưu đãi
+      operationId: infoShop
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/infoShop"
+
+components:
+  # セキュリティスキーマ
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    userUpdate:
+      type: object
+      properties:
+        carrier:
+          type: string
+          format: int64
+          description: thong tin thiet bi
+        version:
+          type: string
+          description: version
+        firebase_token:
+          type: string
+          description: firebase_token
+        mobile:
+          type: string
+          description: so dien thoai
+        password:
+          type: string
+          description: mat khau dang ky
+    userLogin:
+      type: object
+      properties:
+        carrier:
+          type: string
+          format: int64
+          description: thong tin thiet bi
+        version:
+          type: string
+          description: version
+        mobile:
+          type: string
+          description: so dien thoai
+        password:
+          type: string
+          description: mat khau dang ky
+    userInfo:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+          description: last name
+        mobile:
+          type: string
+          description: so dien thoai
+        birthday:
+          type: string
+          description: ngay sinh
+          format: date-time
+        address:
+          type: string
+          description: dia chia
+        gender:
+          type: integer
+          description: gioi tinh (0:la female, 1:lamale)
+        point:
+          type: integer
+          description: so diem tich duoc
+        avatar:
+          type: string
+          description: anh dai dien
+        email:
+          type: string
+          format: email
+          description: dia chi email
+        rating:
+          type: integer
+          description: xep hang
+        distance:
+          type: integer
+          description: vi tri so voi cua hang gan nhat
+    collectsInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          description: Tiêu đề
+        image:
+          type: string
+          description: Ảnh đại diện bổ sư tập
+        des:
+          type: string
+          description: mô tả ngắn 
+        content:
+          type: string
+          description: Nội dung bộ sư tập
+        create_at:
+          type: string
+          description: Ngày tạo bộ sư tập 
+          format: date-time
+    listSell:
+      type: object 
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: name
+        sku:
+          type: string
+          description: mã sku
+        image:
+          type: string
+          description: Ảnh sản phẩm
+        content:
+          type: string
+          description: Nội dung bộ sư tập
+        price:
+          type: integer
+          description: giá tiền
+        sale_price:
+          type: integer
+          description: giá đã giảm
+        origin_price:
+          type: integer
+          description: giá cố định
+        quantity:
+          type: integer
+          description: Số lượng đã bán
+        favourite:
+          type: integer
+          description: sản phẩm yêu thích (0:not 1:yes)
+        sale_off:
+          type: integer
+          description: giảm giá
+        category_id:
+          type: integer
+          description: id danh mục
+        is_favorite:
+          type: boolean 
+          description: true là sản phẩm yêu thích false là ko 
+    infoProducts:
+      type: object 
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: name
+        sku:
+          type: string
+          description: mã sku
+        image:
+          type: string
+          description: Ảnh sản phẩm
+        content:
+          type: string
+          description: Nội dung bộ sư tập
+        price:
+          type: integer
+          description: giá tiền
+        sale_price:
+          type: integer
+          description: giá đã giảm
+        origin_price:
+          type: integer
+          description: giá cố định
+        sold_number:
+          type: integer
+          description: Số lượng đã bán
+        favourite:
+          type: integer
+          description: sản phẩm yêu thích (0:not 1:yes)
+        sale_off:
+          type: integer
+          description: giảm giá
+        category_id:
+          type: integer
+          description: id danh mục
+        is_favorite:
+          type: boolean 
+          description: true là sản phẩm yêu thích false là ko 
+    detailProuct:
+      type: object 
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: name
+        sku:
+          type: string
+          description: mã sku
+        image:
+          type: string
+          description: Ảnh sản phẩm
+        content:
+          type: string
+          description: Nội dung bộ sư tập
+        price:
+          type: integer
+          description: giá tiền
+        sale_price:
+          type: integer
+          description: giá đã giảm
+        origin_price:
+          type: integer
+          description: giá cố định
+        sold_number:
+          type: integer
+          description: Số lượng đã bán
+        favourite:
+          type: integer
+          description: sản phẩm yêu thích (0:not 1:yes)
+        sale_off:
+          type: integer
+          description: giảm giá
+        category_id:
+          type: integer
+          description: id danh mục
+        des:
+          type: string
+          description: Mô tả sản phẩm
+        made_in:
+          type : string
+          description: Xuất xứ sản phẩm
+        rating:
+          type: integer
+          description: đánh giá của người dùng
+        lowest_freeship_price:
+          type: integer
+          description: Giá trị đơn hàng tối thiểu để nhận được freeship. Trường hợp = 0 thì sẽ là freeship.
+        is_favorite:
+          type: boolean 
+          description: true là sản phẩm yêu thích false là ko 
+        listColors:
+          type: array
+          description: danh sách màu sắc sản phẩm.
+          items:
+            $ref: "#/components/schemas/listColors"
+        listSizes:
+          type: array
+          description: danh sách size sản phẩm.
+          items:
+            $ref: "#/components/schemas/listSizes"
+        listImages:
+          type: array
+          description: danh sách ảnh mô tả sản phẩm.
+          items:
+            $ref: "#/components/schemas/listImages"
+        relativeProducts:
+          type: array
+          description: Danh sách sản phẩm liên quan.
+          items:
+            $ref: "#/components/schemas/infoProducts"
+    listColors:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id màu sắc
+        name:
+          type: string
+          description: Tên màu sắc
+    listSizes:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id size
+        name:
+          type: string
+          description: Tên size
+    listImages:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id image
+        image:
+          type: string
+          description: ảnh mô tả sản phẩm
+    infoShop:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id shop chính là (business_id)
+        icon:
+          type: string
+          description: ảnh icon của của hàng
+        name:
+          type: string
+          description: Tên của hàng
+        address:
+          type: string
+          description: địa chỉ của hàng
+        hotline:
+          type: integer
+          description: số điện thoại kiên hệ
+        fb_message_url:
+          type: string
+          description: link fb
+        categories:
+          type: array
+          description: danh sách danh mục sản phẩm
+          items:
+            $ref: "#/components/schemas/category"
+          maxItems: 100
+        banners:
+          type: array
+          description: danh sách banner quảng cáo dựa trên bộ sưu tập và sale
+          items:
+            $ref: "#/components/schemas/banner"
+          maxItems: 100
+        list_menu:
+          type: array
+          description: danh sách sản phẩm
+          items:
+            $ref: "#/components/schemas/menu_item"
+          maxItems: 100
+    banner:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id banner (chính là id của sản phẩm bộ sưu tập và sản phẩm sale)
+        content:
+          type: string
+          description: mô tả banner
+        image:
+          type: string
+          description: link ảnh
+    category:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id category
+        name:
+          type: string
+          description: mô tả banner
+        image:
+          type: string
+          description: link ảnh
+    menu_item:
+      type: object 
+      properties:
+        name:
+          type: string
+          description: menu name
+        type:
+          type: string
+          description: Kiểu menu
+        products:
+          type: array
+          description: danh sách sản phẩm
+          items:
+            $ref: "#/components/schemas/infoProducts"
+          maxItems: 100
+    baseObject:
+      type: object 
+      properties:
+        total:
+          type: integer
+          description: tổng số page
+        currentPage:
+          type: number
+          description: page hiện tại
+        lastPage:
+          type: number
+          description: last page
+        perPage:
+          type: number
+          description:  per page 
+                    
+          
