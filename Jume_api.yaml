@@ -755,7 +755,7 @@ paths:
         - Danh mục sản phẩm
       summary: Thông tin cửa hàng
       description: Lây thông tin của hàng và danh sách kho hàng, banre quản cáo dứa trên sản phẩm sale và sản phẩm ưu đãi
-      operationId: infoShop
+      operationId: category
       parameters:
         - in: query
           name: business_id
@@ -800,7 +800,7 @@ paths:
         - Danh sách cửa hàng 
       summary: Thông tin danh sách các cửa hàng của 1 shop 
       description: Lây thông tin của cửa hàng
-      operationId: infoShop
+      operationId: listShop
       parameters:
         - in: query
           name: business_id
@@ -844,8 +844,8 @@ paths:
       tags:
         - Màn hình tìm kiếm cửa hàng 
       summary: Thông tin tìm kiếm danh sách các cửa hàng của 1 shop 
-      description: Lây thông tin của cửa hàng
-      operationId: infoShop
+      description: Lây thông tin danh sách của cửa hàng
+      operationId: infoShop/seach
       parameters:
         - in: query
           name: keyword
