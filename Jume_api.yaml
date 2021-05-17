@@ -215,6 +215,12 @@ paths:
       operationId: updateUsers
       parameters:
         - in: query
+          name: contacts_id
+          description: id của contacts
+          required: true
+          schema:
+            type: string
+        - in: query
           name: first_name
           description: first name
           required: false
@@ -278,6 +284,8 @@ paths:
                     description:  per page 
                   data:
                     type: object
+                    items:
+                      $ref: "#/components/schemas/userInfo"
   /collect:
     get:
       security:
@@ -881,6 +889,51 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/listShop"
+  /listAddress:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình địa chỉ của tôi 
+      summary: Thông tin danh sách địa chỉ của ng dùng 
+      description: Lây thông tin danh sách địa chỉ
+      operationId: listAddress
+      parameters:
+        - in: query
+          name: contacts_id
+          description: id của ng dùng
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listAddress"
 
 components:
   # セキュリティスキーマ
@@ -1315,7 +1368,17 @@ components:
         postion:
           type: string
           description: Khoảng cach hiện tại cửa ng dùng so với shop. (phần này dựa vào thông tin ng dùng gửi lên ở màn hình đang nhập để tính ra khoảng cách)
-
-
+    listAddress:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id category
+        name:
+          type: number
+          description: tên danh mục
+        img:
+          type: string
+          description: ảnh đại diện danh mục
                     
           
