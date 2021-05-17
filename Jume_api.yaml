@@ -215,12 +215,6 @@ paths:
       operationId: updateUsers
       parameters:
         - in: query
-          name: contacts_id
-          description: id của contacts
-          required: true
-          schema:
-            type: string
-        - in: query
           name: first_name
           description: first name
           required: false
