@@ -793,7 +793,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/categories"
-  /listShop:
+  /shop/list:
     get:
       security:
         # Bearer認証を指定
@@ -802,7 +802,7 @@ paths:
         - Danh sách cửa hàng 
       summary: Thông tin danh sách các cửa hàng của 1 shop 
       description: Lây thông tin của cửa hàng
-      operationId: listShop
+      operationId: list
       parameters:
         - in: query
           name: business_id
@@ -838,16 +838,16 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/listShop"
-  /listShop/seach:
+  /shop/seach:
     get:
       security:
         # Bearer認証を指定
         - bearerAuth: []
       tags:
-        - Màn hình tìm kiếm cửa hàng 
+        - Danh sách cửa hàng 
       summary: Thông tin tìm kiếm danh sách các cửa hàng của 1 shop 
       description: Lây thông tin danh sách của cửa hàng
-      operationId: infoShop/seach
+      operationId: shop/seach
       parameters:
         - in: query
           name: keyword
@@ -883,7 +883,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/listShop"
-  /listAddress:
+  /address/list:
     get:
       security:
         # Bearer認証を指定
@@ -893,13 +893,6 @@ paths:
       summary: Thông tin danh sách địa chỉ của ng dùng 
       description: Lây thông tin danh sách địa chỉ
       operationId: listAddress
-      parameters:
-        - in: query
-          name: contacts_id
-          description: id của ng dùng
-          required: true
-          schema:
-            type: integer
       responses:
         "200":
           description: Success
@@ -927,8 +920,127 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/listAddress"
-
+                      $ref: "#/components/schemas/address"
+  /address/register:
+    post:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình địa chỉ của tôi 
+      summary: Thông tin danh sách địa chỉ của ng dùng 
+      description: Lây thông tin danh sách địa chỉ
+      operationId: listAddress
+      parameters:
+        - in: query
+          name: title
+          description: tên địa chỉ (ví dụ như địa chỉ nhà,cơ quản , bạn gái)
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: address
+          description: địa chỉ chính xác của ng dùng
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: icon
+          description: icon của địa chỉ
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/address"
+  /address/update:
+    put:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình địa chỉ của tôi 
+      summary: Thông tin danh sách địa chỉ của ng dùng 
+      description: Lây thông tin danh sách địa chỉ
+      operationId: listAddress
+      parameters:
+        - in: query
+          name: id
+          description: id của địa chỉ trong bảng address_location
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: title
+          description: tên địa chỉ (ví dụ như địa chỉ nhà,cơ quản , bạn gái)
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: address
+          description: địa chỉ chính xác của ng dùng
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: icon
+          description: icon của địa chỉ
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/address"
 components:
   # セキュリティスキーマ
   securitySchemes:
@@ -1362,17 +1474,26 @@ components:
         postion:
           type: string
           description: Khoảng cach hiện tại cửa ng dùng so với shop. (phần này dựa vào thông tin ng dùng gửi lên ở màn hình đang nhập để tính ra khoảng cách)
-    listAddress:
+    address:
       type: object 
       properties:
         id:
           type: integer
-          description: id category
-        name:
-          type: number
-          description: tên danh mục
-        img:
+          description: id 
+        business_id:
+          type: integer
+          description: id cửa hàng chính
+        title:
           type: string
-          description: ảnh đại diện danh mục
+          description: Tên địa chỉ
+        address:
+          type: string
+          description: đia chỉ user
+        note: 
+          type: string
+          description: comment của user  ví dụ như chi tết đường đi
+        icon:
+          type: string
+          description: ảnh icon của đỉa chị
                     
           
