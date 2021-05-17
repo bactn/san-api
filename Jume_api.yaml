@@ -746,6 +746,141 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/infoShop"
+  /category:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Danh mục sản phẩm
+      summary: Thông tin cửa hàng
+      description: Lây thông tin của hàng và danh sách kho hàng, banre quản cáo dứa trên sản phẩm sale và sản phẩm ưu đãi
+      operationId: infoShop
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/categories"
+  /listShop:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Danh sách cửa hàng 
+      summary: Thông tin danh sách các cửa hàng của 1 shop 
+      description: Lây thông tin của cửa hàng
+      operationId: infoShop
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listShop"
+  /listShop/seach:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình tìm kiếm cửa hàng 
+      summary: Thông tin tìm kiếm danh sách các cửa hàng của 1 shop 
+      description: Lây thông tin của cửa hàng
+      operationId: infoShop
+      parameters:
+        - in: query
+          name: keyword
+          description: Có thể nhập bất kỳ 1 ký tự nào để tìm kiếm cửa hàng.
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listShop"
 
 components:
   # セキュリティスキーマ
@@ -1123,5 +1258,64 @@ components:
         perPage:
           type: number
           description:  per page 
+    categories:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id category
+        name:
+          type: number
+          description: tên danh mục
+        img:
+          type: string
+          description: ảnh đại diện danh mục
+    listShop:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id shop
+        business_id:
+          type: integer
+          description: id cửa hàng chính
+        name:
+          type: string
+          description: Tên cửa hàng
+        landmark:
+          type: string
+          description: số nhà
+        country:
+          type: string
+          description: Tên nước
+        state:
+          type: string
+          description: Thành phố, bang
+        city:
+          type: string
+          description: thành phố
+        zip_code:
+          type: integer 
+          description: Mã bưu điện 
+        time_open:
+          format: date-time 
+          type: string
+          description: giờ mở cửa
+        time_close:
+          format: date-time
+          type: string
+          description: giờ đóng cửa
+        mobile:
+          type: integer
+          description: số điện thoại
+        email:
+          type: string
+          format: email
+          description: địa chỉ email
+        postion:
+          type: string
+          description: Khoảng cach hiện tại cửa ng dùng so với shop. (phần này dựa vào thông tin ng dùng gửi lên ở màn hình đang nhập để tính ra khoảng cách)
+
+
                     
           
