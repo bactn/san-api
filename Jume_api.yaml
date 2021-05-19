@@ -212,48 +212,14 @@ paths:
         - users
       summary: Thay đổi thông tin user 
       description: thay đổi thông tin user 
-      operationId: updateUsers
-      parameters:
-        - in: query
-          name: first_name
-          description: first name
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: last_name
-          description: last name
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: birthday
-          description: ngay sinh
-          required: false
-          schema:
-            type: string
-            format: date-time 
-        - in: query
-          name: gender
-          description: giới tính (0:la female, 1:lamale)
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: avatar
-          description: ảnh đại diện 
-          required: false
-          schema:
-            type: string
-            format: base64
-
-        - in: query
-          name: email 
-          description: địa chỉ email 
-          required: false
-          schema:
-            type: string
-            format: email 
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateUser"
+        description: thay đổi thông tin
+        required: true
       responses:
         "200":
           description: Success
@@ -1781,4 +1747,28 @@ components:
           type: string
           description: ngày tạo bài viết
           format: date-time
+    updateUser:
+      type: object 
+      properties:
+        first_name:
+          type: string
+          description: first_name 
+        last_name:
+          type: string
+          description: last_name
+        birthday:
+          type: string
+          description: birthday
+          format: date-time
+        gender: 
+          type: integer
+          description:  giơi tinh
+        avatar:
+          type: string
+          description: ảnh đại diện
+          format: base64
+        email:
+          type: string
+          description: dịa chỉ email
+          format: email
           
