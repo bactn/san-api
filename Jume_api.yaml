@@ -471,13 +471,13 @@ paths:
       operationId: updateFavourite
       parameters:
         - in: query
-          name: type(0:not 1:yest)
+          name: type(0:not 1:yes)
           description: trạng thái yêu thích
           required: true
           schema:
             type: integer
         - in: query
-          name: id
+          name: product_id
           description: id sản phẩm
           required: true
           schema:
