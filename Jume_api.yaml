@@ -1086,7 +1086,63 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/address"
-
+  /news:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình tin tức
+      summary: Thông tin tức của cửa hàng
+      description: lấy danh sách thông tin tin tức của cửa hàng
+      operationId: getnews
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/new"
 components:
   # セキュリティスキーマ
   securitySchemes:
@@ -1544,5 +1600,30 @@ components:
         icon:
           type: string
           description: ảnh icon của đỉa chị
+    new:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id 
+        business_id:
+          type: integer
+          description: id cửa hàng chính
+        title:
+          type: string
+          description: Tiêu đề tin tức
+        des:
+          type: string
+          description: Mô tả ngắn
+        content: 
+          type: string
+          description: Nội dung bài báo
+        image:
+          type: string
+          description: ảnh news
+        create_at:
+          type: string
+          description: ngày tạo bài viết
+          format: date-time
                     
           
