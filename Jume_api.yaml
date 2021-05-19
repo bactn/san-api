@@ -1143,6 +1143,69 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/new"
+  /sale:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình danh sách bán chạy và sale
+      summary: danh sách sản phẩm bán chạy và sale
+      description: lấy danh sách sản phẩm
+      operationId: listsale
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: type
+          description:  truyền  ,best_sell lên để lấy data theo danh sách sale và bán chạy                                                                                                
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/infoProducts"
 components:
   # セキュリティスキーマ
   securitySchemes:
