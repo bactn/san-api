@@ -351,8 +351,8 @@ paths:
       operationId: getlistSell
       parameters:
       - in: query
-        name: type (received,pending,ordered,final)
-        description: Trạng thái đơn hàng 
+        name: type 
+        description: Trạng thái đơn hàng  (received,pending,ordered,final)
         required: true
         schema:
           type: string
@@ -546,8 +546,8 @@ paths:
         schema:
           type: integer
       - in: query
-        name: type (received,pending,ordered,final)
-        description: truyền lên relate, sale, newest, oldest, low_price, high_price
+        name: type 
+        description: truyền lên relate, sale, newest, oldest, low_price, high_price (received,pending,ordered,final)
         required: false
         schema:
           type: string
@@ -592,7 +592,7 @@ paths:
       parameters:
       - in: query
         name: id 
-        description: id sản phẩm
+        description: id sản phẩm variation_id
         required: true
         schema:
           type: string
@@ -666,14 +666,14 @@ paths:
         schema:
           type: integer
       - in: query
-        name: type (received,pending,ordered,final)
-        description: truyền lên relate, sale, newest, oldest, low_price, high_price gia tương đương với các tab bên dưới
+        name: type 
+        description: truyền lên relate, sale, newest, oldest, low_price, high_price gia tương đương với các tab bên dưới (received,pending,ordered,final)
         required: false
         schema:
           type: string
       - in: query
-        name: keyword (received,pending,ordered,final)
-        description: keyword thì có thể là tên chính xác áo hoặc là mã áo, quần. format type url param encode
+        name: keyword 
+        description: keyword thì có thể là tên chính xác áo hoặc là mã áo, quần. format type url param encode (received,pending,ordered,final)
         required: false
         schema:
           type: string
@@ -1143,6 +1143,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/new"
+                
   /sale:
     get:
       security:
