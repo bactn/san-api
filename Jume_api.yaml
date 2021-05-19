@@ -490,7 +490,7 @@ paths:
       - in: query
         name: business_id
         description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
-        required: true
+        required: false
         schema:
           type: integer
       - in: query
@@ -571,7 +571,7 @@ paths:
       - in: query
         name: business_id 
         description: id của hàng
-        required: true
+        required: false
         schema:
           type: string
       responses:
@@ -773,7 +773,7 @@ paths:
         - in: query
           name: business_id
           description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.
-          required: true
+          required: false
           schema:
             type: integer
       responses:
@@ -818,7 +818,7 @@ paths:
         - in: query
           name: business_id
           description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.
-          required: true
+          required: false
           schema:
             type: integer
       responses:
