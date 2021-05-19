@@ -1165,7 +1165,7 @@ paths:
           description:  truyền  ,best_sell lên để lấy data theo danh sách sale và bán chạy                                                                                                
           required: false
           schema:
-            type: integer
+            type: string
         - in: query
           name: limit
           description: Số lượng data trong 1 page
