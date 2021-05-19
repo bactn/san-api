@@ -1206,6 +1206,73 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/infoProducts"
+  /listpoint:
+    get:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình lịch sử tích điểm 
+      summary: danh sách lịch sử tích điểm các cửa hàng
+      description: lấy danh sách lịch sử tích điểm
+      operationId: listpoint
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  total:
+                    type: integer
+                    description: tổng số page
+                  currentPage:
+                    type: number
+                    description: page hiện tại
+                  lastPage:
+                    type: number
+                    description: last page
+                  perPage:
+                    type: number
+                    description:  per page 
+                  data:
+                    type: object
+                    description: dữ liệu
+                    properties:
+                      total_point:
+                        type: integer
+                        description: tông điêm đã tích
+                      point_used:
+                        type: integer
+                        description: số point đã dùng
+                      points:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/point"
 components:
   # セキュリティスキーマ
   securitySchemes:
@@ -1688,5 +1755,29 @@ components:
           type: string
           description: ngày tạo bài viết
           format: date-time
-                    
+    point:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id 
+        business_id:
+          type: integer
+          description: id cửa hàng chính
+        business_name:
+          type: string
+          description: tên cửa hàng đã tich điểm
+        point: 
+          type: integer
+          description: điểm đã được tích
+        status:
+          type: string
+          description: trạng thái (thành công, thất bại)
+        image:
+          type: string
+          description: logo của cửa hàng
+        create_at:
+          type: string
+          description: ngày tạo bài viết
+          format: date-time
           
