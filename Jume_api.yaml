@@ -1086,69 +1086,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/address"
-  /address/update1:
-    put:
-      security:
-        # Bearer認証を指定
-        - bearerAuth: []
-      tags:
-        - Màn hình địa chỉ của tôi 
-      summary: Thông tin danh sách địa chỉ của ng dùng 
-      description: Lây thông tin danh sách địa chỉ
-      operationId: update
-      parameters:
-        - in: query
-          name: id
-          description: id của địa chỉ trong bảng address_location
-          required: true
-          schema:
-            type: integer
-        - in: query
-          name: title
-          description: tên địa chỉ (ví dụ như địa chỉ nhà,cơ quản , bạn gái)
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: address
-          description: địa chỉ chính xác của ng dùng
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: icon
-          description: icon của địa chỉ
-          required: false
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message: 
-                   type: string
-                  code: 
-                   type: integer
-                  total:
-                    type: integer
-                    description: tổng số page
-                  currentPage:
-                    type: number
-                    description: page hiện tại
-                  lastPage:
-                    type: number
-                    description: last page
-                  perPage:
-                    type: number
-                    description:  per page 
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/address"
+
 components:
   # セキュリティスキーマ
   securitySchemes:
