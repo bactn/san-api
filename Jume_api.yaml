@@ -471,8 +471,8 @@ paths:
       operationId: updateFavourite
       parameters:
         - in: query
-          name: type(0:not 1:yes)
-          description: trạng thái yêu thích
+          name: type
+          description: trạng thái yêu thích (0:not 1:yes)
           required: true
           schema:
             type: integer
