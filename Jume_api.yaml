@@ -1547,6 +1547,11 @@ components:
           items:
             $ref: "#/components/schemas/menu_item"
           maxItems: 100
+        policy:
+          type: array
+          description: Hiển thị các chính sách, hỗ trợ...
+          items:
+           $ref: "#/components/schemas/policy"
     banner:
       type: object 
       properties:
@@ -1769,3 +1774,18 @@ components:
           type: string
           description:  icon của địa chỉ
           format: base64
+    policy:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id 
+        title:
+          type: string
+          description: ở đây sẽ hiện thị tên của menu như là chính sách,hỗ trợ , về chúng tôi, ,..
+        content:
+          type: string
+          description: Chính sách , hỗ trợ,... content ng dùng nhập
+        icon: 
+          type: string
+          description:  icon 
