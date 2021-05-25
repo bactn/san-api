@@ -946,7 +946,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/updateAndress"
+              $ref: "#/components/schemas/registerAndress"
         description: đăng ký địa chỉ 
         required: true
       responses:
@@ -1675,12 +1675,30 @@ components:
         type:
           type: integer
           description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
-    updateAndress:
+    registerAndress:
       type: object 
       properties:
         contact_id:
           type: integer
           description: id của ng dùng
+        title:
+          type: string
+          description: Tên địa chỉ
+        address:
+          type: string
+          description: đia chỉ user
+        comment: 
+          type: string
+          description: comment của user  ví dụ như chi tết đường đi
+        icon:
+          type: string
+          description: ảnh icon của đỉa chị
+        type:
+          type: integer
+          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
+    updateAndress:
+      type: object 
+      properties:
         title:
           type: string
           description: Tên địa chỉ
