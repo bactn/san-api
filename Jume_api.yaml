@@ -942,25 +942,13 @@ paths:
       summary: Thông tin danh sách địa chỉ của ng dùng 
       description: Lây thông tin danh sách địa chỉ
       operationId: register
-      parameters:
-        - in: query
-          name: title
-          description: tên địa chỉ (ví dụ như địa chỉ nhà,cơ quản , bạn gái)
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: address
-          description: địa chỉ chính xác của ng dùng
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: icon
-          description: icon của địa chỉ
-          required: false
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAndress"
+        description: đăng ký địa chỉ 
+        required: true
       responses:
         "200":
           description: Success
@@ -1003,7 +991,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/updateAddress"
+              $ref: "#/components/schemas/updateAndress"
         description: update thông tin địa chỉ
         required: true
       responses:
@@ -1669,21 +1657,45 @@ components:
         id:
           type: integer
           description: id 
-        business_id:
+        contact_id:
           type: integer
-          description: id cửa hàng chính
+          description: id của ng dùng
         title:
           type: string
           description: Tên địa chỉ
         address:
           type: string
           description: đia chỉ user
-        note: 
+        comment: 
           type: string
           description: comment của user  ví dụ như chi tết đường đi
         icon:
           type: string
           description: ảnh icon của đỉa chị
+        type:
+          type: integer
+          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
+    updateAndress:
+      type: object 
+      properties:
+        contact_id:
+          type: integer
+          description: id của ng dùng
+        title:
+          type: string
+          description: Tên địa chỉ
+        address:
+          type: string
+          description: đia chỉ user
+        comment: 
+          type: string
+          description: comment của user  ví dụ như chi tết đường đi
+        icon:
+          type: string
+          description: ảnh icon của đỉa chị
+        type:
+          type: integer
+          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
     new:
       type: object 
       properties:
@@ -1708,6 +1720,10 @@ components:
         create_at:
           type: string
           description: ngày tạo bài viết
+          format: date-time
+        type:
+          type: number
+          description: type  = 1 là của news con lại là của chính sách
           format: date-time
     point:
       type: object 
