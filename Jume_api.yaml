@@ -839,6 +839,18 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: limit
+          description: Số lượng data trong 1 page
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          description: vị trí page muốn lấy
+          required: false
+          schema:
+            type: integer
       responses:
         "200":
           description: Success
