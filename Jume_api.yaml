@@ -822,6 +822,18 @@ paths:
           schema:
             type: integer
         - in: query
+          name: lat
+          description: lat của người dùng
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: long
+          description: long cua người dùng
+          required: true
+          schema:
+            type: integer
+        - in: query
           name: keyword
           description: Có thể nhập bất kỳ 1 ký tự nào để tìm kiếm cửa hàng.
           required: false
