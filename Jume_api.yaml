@@ -811,7 +811,7 @@ paths:
         - bearerAuth: []
       tags:
         - Danh sách cửa hàng 
-      summary: Thông tin danh sách các cửa hàng của 1 shop 
+      summary: Thông tin danh sách các cửa hàng của 1 shop và màn hình tìm kiếm của hàng
       description: Lây thông tin của cửa hàng
       operationId: list
       parameters:
@@ -821,45 +821,6 @@ paths:
           required: false
           schema:
             type: integer
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message: 
-                   type: string
-                  code: 
-                   type: integer
-                  total:
-                    type: integer
-                    description: tổng số page
-                  currentPage:
-                    type: number
-                    description: page hiện tại
-                  lastPage:
-                    type: number
-                    description: last page
-                  perPage:
-                    type: number
-                    description:  per page 
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/listShop"
-  /shop/seach:
-    get:
-      security:
-        # Bearer認証を指定
-        - bearerAuth: []
-      tags:
-        - Danh sách cửa hàng 
-      summary: Thông tin tìm kiếm danh sách các cửa hàng của 1 shop 
-      description: Lây thông tin danh sách của cửa hàng
-      operationId: shop/seach
-      parameters:
         - in: query
           name: keyword
           description: Có thể nhập bất kỳ 1 ký tự nào để tìm kiếm cửa hàng.
