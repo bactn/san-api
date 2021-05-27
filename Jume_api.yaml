@@ -1651,9 +1651,6 @@ components:
     registerAndress:
       type: object 
       properties:
-        contact_id:
-          type: integer
-          description: id của ng dùng
         title:
           type: string
           description: Tên địa chỉ
