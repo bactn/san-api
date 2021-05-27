@@ -1597,6 +1597,9 @@ components:
         id:
           type: integer
           description: id shop
+        image:
+          type: string
+          description: ảnh bìa shop
         business_id:
           type: integer
           description: id cửa hàng chính
@@ -1623,7 +1626,7 @@ components:
           type: string
           description: giờ mở cửa
         time_close:
-          format: date-time
+          format: time
           type: string
           description: giờ đóng cửa
         mobile:
@@ -1633,6 +1636,12 @@ components:
           type: string
           format: email
           description: địa chỉ email
+        lat:
+          type: string
+          description: lat
+        long: 
+          type: string
+          description: long
         postion:
           type: string
           description: Khoảng cach hiện tại cửa ng dùng so với shop. (phần này dựa vào thông tin ng dùng gửi lên ở màn hình đang nhập để tính ra khoảng cách)
