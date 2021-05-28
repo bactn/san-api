@@ -1007,6 +1007,38 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/address"
+  /address/delete{id}:
+    delete:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình địa chỉ của tôi 
+      summary: Thông tin danh sách địa chỉ của ng dùng 
+      description: Xoá địa chỉ ng dùng
+      operationId: delete
+      parameters:
+        - in: query
+          name: id
+          description: id của địa chỉ ship hang
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  data:
+                    type: string
+                    description: thành công
   /news:
     get:
       security:
