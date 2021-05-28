@@ -1692,7 +1692,7 @@ components:
         address:
           type: string
           description: đia chỉ user
-        comment: 
+        note: 
           type: string
           description: comment của user  ví dụ như chi tết đường đi
         icon:
@@ -1700,7 +1700,7 @@ components:
           description: ảnh icon của đỉa chị
         type:
           type: integer
-          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
+          description: type = 1 là nhà ở , type = 2 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
     registerAndress:
       type: object 
       properties:
@@ -1710,7 +1710,7 @@ components:
         address:
           type: string
           description: đia chỉ user
-        comment: 
+        note: 
           type: string
           description: comment của user  ví dụ như chi tết đường đi
         icon:
@@ -1718,7 +1718,7 @@ components:
           description: ảnh icon của đỉa chị
         type:
           type: integer
-          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
+          description: type = 1 là nhà ở , type = 2 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
     updateAndress:
       type: object 
       properties:
@@ -1728,7 +1728,7 @@ components:
         address:
           type: string
           description: đia chỉ user
-        comment: 
+        note: 
           type: string
           description: comment của user  ví dụ như chi tết đường đi
         icon:
@@ -1736,7 +1736,7 @@ components:
           description: ảnh icon của đỉa chị
         type:
           type: integer
-          description: type = 0 là nhà ở , type = 1 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
+          description: type = 1 là nhà ở , type = 2 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
     new:
       type: object 
       properties:
