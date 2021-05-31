@@ -1716,6 +1716,12 @@ components:
         icon:
           type: string
           description: ảnh icon của đỉa chị
+        lat:
+          type: string
+          description: vi trí lat
+        long:
+          type: string
+          description: vị trí long
         type:
           type: integer
           description: type = 1 là nhà ở , type = 2 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
@@ -1734,6 +1740,12 @@ components:
         icon:
           type: string
           description: ảnh icon của đỉa chị
+        lat:
+          type: string
+          description: vi trí lat
+        long:
+          type: string
+          description: vị trí long
         type:
           type: integer
           description: type = 1 là nhà ở , type = 2 công ty ngoài 2 cái trên là loại khác để app biết đâu là địa chỉ nhà địa chỉ cty
