@@ -1007,7 +1007,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/address"
-  /address/delete{id}:
+  /address/delete/{id}:
     delete:
       security:
         # Bearer認証を指定
@@ -1018,10 +1018,10 @@ paths:
       description: Xoá địa chỉ ng dùng
       operationId: delete
       parameters:
-        - in: query
+        - in: path
           name: id
           description: id của địa chỉ ship hang
-          required: false
+          required: true
           schema:
             type: integer
       responses:
@@ -1728,6 +1728,9 @@ components:
     updateAndress:
       type: object 
       properties:
+        id:
+          type: integer
+          description: id của ng dung
         title:
           type: string
           description: Tên địa chỉ
