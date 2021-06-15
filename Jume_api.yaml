@@ -130,6 +130,10 @@ paths:
                    type: string
                   code: 
                    type: integer
+                  data:
+                    type: boolean
+                    
+
   /forgotPass:
     put:
       security:
