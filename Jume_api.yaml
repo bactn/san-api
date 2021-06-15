@@ -104,6 +104,32 @@ paths:
                         jwtToken:
                           type: string
                           description: token.
+  /checkPhone:
+    post:
+      tags:
+        - Màn hình đăng ký
+      summary: Màn hinh đăng ký
+      description: check số điện thoại
+      operationId: checkphone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/checkphone"
+        description: api check so dien thoai
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
   /forgotPass:
     put:
       security:
@@ -1973,3 +1999,9 @@ components:
           type: string
           format: date-time
           description: ngay tao
+    checkphone:
+      type: object 
+      properties:
+        mobile:
+          type: string
+          description: số điện thoại
