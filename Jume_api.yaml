@@ -1144,6 +1144,12 @@ paths:
           schema:
             type: integer
         - in: query
+          name: type
+          description: type 1 là thông báo chung type 2 là thong bao trang thai
+          required: true
+          schema:
+            type: integer
+        - in: query
           name: limit
           description: Số lượng data trong 1 page
           required: false
