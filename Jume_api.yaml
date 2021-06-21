@@ -1350,6 +1350,42 @@ paths:
                     type: array
                     items:
                         $ref: "#/components/schemas/guides"
+  /discount:
+    get:
+      tags:
+        - Màn hình danh sách sản phẩm ưu đãi
+      summary: Màn hình danh sách sản phẩm ưu đãi
+      description: hiển thị màn hình danh sách sản phẩm ưu đãi
+      operationId: getDiscount
+      parameters:
+        - in: query
+          name: business_id
+          description: param store_id để lấy ra id tương ứng từng store. Mục đích để đồng bộ cho app jume sau này.                                                                                                        
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: user_id
+          description: id của ng dung.có thể lấy ưu đãi riêng cho từng ng dung
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  data:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/discount"
 components:
   # セキュリティスキーマ
   securitySchemes:
@@ -2015,3 +2051,26 @@ components:
         mobile:
           type: string
           description: số điện thoại
+    discount:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id
+        name:
+          type: string
+          description: tên chương trình ưu đãi
+        discount:
+          type: integer
+          description: số ưu đãi
+        starts_at:
+          type: string
+          description: ngày bắt đầy ưu đãi
+          format: date-time
+        ends_at:
+          type: string
+          description: ngày kết thúc khuyến mãi
+          format: date-time
+        url_img:
+          type: string
+          description: ảnh chương trình ưu đãi
