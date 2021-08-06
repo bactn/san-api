@@ -1126,7 +1126,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/new"
-  /notifys:
+  /notifies:
     get:
       security:
         # Bearer認証を指定
@@ -1185,11 +1185,58 @@ paths:
                   perPage:
                     type: number
                     description:  per page 
+                  unread_common:
+                    type: number
+                    description:  số thông báo chung chưa đọc
+                  unread_order:
+                    type: number
+                    description: số thông báo đơn hàng chưa đọc 
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/new"
-                
+                      $ref: "#/components/schemas/notification"
+  /readNotify:
+    put:
+      security:
+        # Bearer認証を指定
+        - bearerAuth: []
+      tags:
+        - Màn hình thông báo
+      summary: Xử lý đọc thông báo
+      description: Xử lý đọc thông báo
+      operationId: readNotify
+      parameters:
+        - in: query
+          name: type
+          description: type=1 là thông báo chung type = 2 là thông báo đơn hàng
+          required: true
+          schema:
+            type: int
+        - in: query
+          name: id
+          description: id của thông báo(type=common thì không cần)
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                   type: string
+                  code: 
+                   type: integer
+                  unread_common:
+                    type: number
+                    description:  số thông báo chung chưa đọc
+                  unread_order:
+                    type: number
+                    description: số thông báo đơn hàng chưa đọc
+                              
   /sale:
     get:
       security:
@@ -1940,6 +1987,38 @@ components:
           type: number
           description: type  = 1 là của news con lại là của chính sách
           format: date-time
+    notification:
+      type: object 
+      properties:
+        id:
+          type: integer
+          description: id 
+        type:
+          type: number
+          description: type  = 0 là của common còn lại là order
+          format: date-time
+        order_id:
+          type: integer
+          description: id 
+        business_id:
+          type: integer
+          description: id cửa hàng chính
+        title:
+          type: string
+          description: Tiêu đề thông báo
+        des:
+          type: string
+          description: Mô tả ngắn
+        content: 
+          type: string
+          description: Nội dung bài báo
+        image:
+          type: string
+          description: ảnh thông báo
+        create_at:
+          type: string
+          description: ngày tạo bài viết
+          format: date-time      
     point:
       type: object 
       properties:
