@@ -1197,9 +1197,6 @@ paths:
                       $ref: "#/components/schemas/notification"
   /readNotify:
     put:
-      security:
-        # Bearer認証を指定
-        - bearerAuth: []
       tags:
         - Màn hình thông báo
       summary: Xử lý đọc thông báo
@@ -1211,7 +1208,7 @@ paths:
           description: type=1 là thông báo chung type = 2 là thông báo đơn hàng
           required: true
           schema:
-            type: int
+            type: integer
         - in: query
           name: id
           description: id của thông báo(type=common thì không cần)
